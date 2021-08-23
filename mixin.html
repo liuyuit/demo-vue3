@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue mixin</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <a href="https://vue3js.cn/docs/zh/guide/computed.html"></a>
+    <a href="http://vue3.vue.local/mixin.html"></a>
+    <div id="app">
+      <p>Has published books:</p>
+      <span>{{ publishedBookMessage }}</span>
+    </div>
+  </body>
+</html>
+<script>
+
+const myMixin = {
+  data() {
+    return {
+      message: 'hello',
+      foo: 'abc'
+    }
+  }
+}
+
+const app = Vue.createApp({
+  mixins: [myMixin],
+  data() {
+    return {
+      message: 'goodbye',
+      bar: 'def'
+    }
+  },
+  created() {
+    console.log(this.$data) // => { message: "goodbye", foo: "abc", bar: "def" }
+  }
+})
+const vm = app.mount('#app')
+
+</script>

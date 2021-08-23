@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  node:
+    build:
+      context: ./service/dockerfile/node
+    container_name: started_node
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8087:8080"
+      - "3007:3000"
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=Asia/Shanghai
+
+  nginx:
+    container_name: started_nginx
+    build:
+      context: ./service/dockerfile/nginx
+    volumes:
+      - ./service/config/nginx:/etc/nginx
+      - ./service/log/nginx:/var/log/nginx
+      - ./:/var/www
+    ports:
+      - "87:80"
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - node

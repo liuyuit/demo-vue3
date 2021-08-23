@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue instance</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <a href="https://vue3js.cn/docs/zh/guide/instance.html"></a>
+    <a href="http://vue3.vue.local/instance.html"></a>
+    <input type="text">
+    <div id="app">
+      <search-input
+      v-bind:value="id">
+      </search-input>
+      <component-p
+      v-bind:msg="message">
+      </component-p>
+    </div>
+  </body>
+</html>
+<script>
+
+const SearchInputComponent = {
+  props: ["id"],
+  template: `<input type="text" value="{{ id }}">`,
+};
+const FocusDirective = {
+  props: ["value"],
+  template: `<input type="password">`,
+};
+
+const app = Vue.createApp({
+  data() {
+    return {
+      id: 12,
+      message: 'this is a message',
+    }
+  },
+  created() {
+    console.log('id:' + this.id);
+  }
+})
+  .component('search-input', SearchInputComponent)
+  .component('component-p', {
+    props: ['msg'],
+    template: `<p>{{ msg }}</p>`,
+  })
+  .directive('focus', FocusDirective)
+  // .use(LocalePlugin)
+
+const vm = app.mount('#app');
+
+console.log(vm.id);
+</script>

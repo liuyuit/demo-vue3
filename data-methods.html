@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue instance</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <a href="https://vue3js.cn/docs/zh/guide/data-methods.html"></a>
+    <a href="http://vue3.vue.local/data-methods.html"></a>
+    <div id="app">
+      <button @click="increment">Up vote</button>
+    </div>
+  </body>
+</html>
+<script>
+
+const app = Vue.createApp({
+  data() {
+    return { count: 4 }
+  },
+  methods: {
+    increment() {
+      this.count++;
+      console.log(this.count);
+    }
+  },
+})
+
+const vm = app.mount('#app')
+
+console.log(vm.$data.count) // => 4
+console.log(vm.count)       // => 4
+
+// 修改 vm.count 的值也会更新 $data.count
+vm.count = 5
+console.log(vm.$data.count) // => 5
+
+// 反之亦然
+vm.$data.count = 6
+console.log(vm.count) // => 6
+</script>

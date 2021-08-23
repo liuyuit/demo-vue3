@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue computed</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <a href="https://vue3js.cn/docs/zh/guide/computed.html"></a>
+    <a href="http://vue3.vue.local/computed.html"></a>
+    <div id="app">
+      <p>Has published books:</p>
+      <span>{{ publishedBookMessage }}</span>
+    </div>
+  </body>
+</html>
+<script>
+
+const app = Vue.createApp({
+  data() {
+    return { 
+      author: {
+        name: 'John Doe',
+        books: [
+          'Vue 2 - Advanced Guide',
+          'Vue 3 - Basic Guide',
+          'Vue 4 - The Mystery'
+        ]
+      },
+     }
+  },
+  methods: {
+  },
+  computed: {
+      publishedBookMessage() {
+        return this.author.books.length > 0 ? 'yes' : 'no';
+      }
+  },
+})
+
+const vm = app.mount('#app')
+
+</script>
+
+
